@@ -1,0 +1,116 @@
+* {
+	box-sizing: border-box;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+.left {
+	float: left;
+}
+
+.hidden {
+	display: none;
+}
+
+.column {
+	min-height: 40em;
+	margin: auto;
+	display: inline-block;
+	border: 1px solid black;
+}
+
+#office_column {
+	min-width: 33%
+}
+
+#staff_column {
+	min-width: 66%
+}
+
+.form_box {
+	max-width: 100%;
+	height: 14em;
+	border: 1px solid #666666;
+	text-align: center;
+	padding-bottom: 1em;
+	margin: 0.5em auto;
+	background-color: #E8E8E8;
+}
+
+.form_box input {
+	width: 16em;
+	display: block;
+	margin: 1.5em auto 0 auto;
+}
+
+.form_box select {
+	margin: 1.5em auto 0 auto;
+}
+
+.add_btn {
+	height: 2em;
+	border-radius: 0.5em;
+	cursor: pointer;
+	background: linear-gradient(#79bc64, #578843);
+}
+
+.rmv_btn {
+	height: 2em;
+	border-radius: 0.25em;
+	cursor: pointer;
+	background: red;
+}
+
+#office_form_box form {
+	margin-top: 4em;
+}
+
+#office_select {
+	width: 16em;
+}
+
+.doh {
+	width: 5.16em;
+}
+
+.list {
+	min-height: 27em;
+	border: 1px solid #666666;
+	padding: 1em;
+	margin: 1em auto;
+}
+
+.checkbox {
+	width: 1em;
+	margin: 0 1em 0 0;
+	float: left;
+	border: 1px solid #fff;
+}
+.office_box {
+	margin: 0.5em 0;
+}
+
+.office_name {
+
+}
+
+.staff_clmn {
+	width: 8em;
+	display: inline-block;
+}
+
+.staff_box {
+	margin: 0.5em 0;
+}
+
+.fname {
+	margin:;
+}
