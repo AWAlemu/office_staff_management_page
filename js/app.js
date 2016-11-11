@@ -10,7 +10,7 @@ Model.prototype.getOffices = function() {
 	$.ajax({
 		url: 'http://dev.smartpelican.com/public/test_task/departments.php',
 		type: 'GET',
-		data: 'application/json'
+		dataType: 'json'
 	}).done(function(result) {
 		storeOfficesInModel(result);
 	}).fail(function(jqXHR, err) {
@@ -25,8 +25,10 @@ Model.prototype.initializeOffices = function(offices) {
 	}
 };
 // Definition of a View object
-var View = function() {
+var View = function(oTSelector) {
 	this.document = $(document);
+	this.officeTemplate = $('#office_template li');
+	this.officesList = $('#office_list');
 	this.onPageLoad = null;
 	this.document.ready(this.onLoad.bind(this));
 };
@@ -36,9 +38,24 @@ View.prototype.onLoad = function() {
 		this.onPageLoad();
 	}
 };
-// Definition of method to modify the view of the UI bu rendering offices
+// Definition of method to modify the view of the UI by rendering offices
 View.prototype.renderOffices = function(offices) {
-	console.log('Inside renderOffices', offices);
+	for (var i = 0; i < offices.length; i++) {
+		var office = offices[i];
+		this.appendOffice(office.id, office.name);
+	}
+};
+// Definition of method to modidify the view of the UI by appending an office
+View.prototype.appendOffice = function(id, name) {
+	console.log(id, name);
+	var officeElement = this.officeTemplate.clone();
+	var checkbox = officeElement.find('input');
+	checkbox.attr('value', id);
+
+	var officeName = officeElement.find('p');
+	officeName.text(name);
+
+	this.officesList.append(officeElement);
 };
 // Definition of Controller object
 var Controller = function(model, view) {
@@ -55,4 +72,3 @@ $(function() {
 	// Create a Controller instance
 	var controller = new Controller(model, view);
 });
-
