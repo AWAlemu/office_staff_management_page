@@ -13,16 +13,22 @@
 		<section class="columns">
 			<div class="column left" id="office_column">
 				<div class="form_box" id="office_form_box">
-					<form>
-						<input type="text" name="office_name" placeholder="Office Name">
-						<input class="add_btn" type="submit" value="Create Office">
+					<form id="ofc_add_form">
+						<div>
+							<span>* </span><input id="office_input" type="text" name="office_name" placeholder="Office Name" required/>
+							<br/>
+							<span id="unique"></span>
+						</div>
+						<div>
+							<input class="add_btn" type="submit" value="Create Office"/>
+						</div>
 					</form>
 				</div>
 				<div class="list" >
 					<h3>Offices</h3>
 					<hr/>
 					<div id="offices">
-						<form>
+						<form id="office_rmv_form">
 							<ul id="office_list">
 							</ul>
 							<input class="rmv_btn" type="submit" value="Remove">
@@ -31,8 +37,8 @@
 					<div class="hidden" id="office_template">
 						<li>
 							<div class="office_box">
-								<div class="checkbox">
-									<input type="checkbox" name="office">
+								<div class="checkbox_div">
+									<input class="checkbox" type="checkbox" name="office"/>
 								</div>
 								<div class="office_name">
 									<p></p>
@@ -44,18 +50,21 @@
 			</div>
 			<div class="column" id="staff_column">
 				<div class="form_box" id="staff_form_box">
-					<form>
-						<input type="text" name="fname" placeholder="First Name">
-						<input type="text" name="lname" placeholder="Last Name">
-						<select name="office" id="office_select" title="Office">
-							<option>Marketing</option>
-							<option>Management</option>
-							<option>Development</option>
-							<option>Testing</option>
-						</select>
+					<form id="staff_add_form">
 						<div>
-							<select name="hire_month" class="doh" id="month" title="Month">
-								<option value="0" selected="1">Month</option>
+							<span>* </span><input type="text" name="fname" placeholder="First Name" required/>
+						</div>
+						<div>
+							<span>* </span><input type="text" name="lname" placeholder="Last Name" required/>
+						</div>
+						<div>
+							<span>* </span><select name="office" id="office_select" title="Office" required>
+							</select>
+						</div>
+						<div>
+							<span>* </span>
+							<select name="hire_month" class="doh" id="month" title="Month" required>
+								<option value="" disabled selected hidden>Month</option>
 								<option value="1">Jan</option>
 								<option value="2">Feb</option>
 								<option value="3">Mar</option>
@@ -69,8 +78,8 @@
 								<option value="11">Nov</option>
 								<option value="12">Dec</option>
 							</select>
-							<select name="hire_day" class="doh" id="day" title="Day">
-								<option value="0" selected="1">Day</option>
+							<select name="hire_day" class="doh" id="day" title="Day" required>
+								<option value="" disabled selected="1" hidden>Day</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -103,8 +112,8 @@
 								<option value="30">30</option>
 								<option value="31">31</option>
 							</select>
-							<select name="hire_year" class="doh" id="year" title="Year">
-								<option value="0" selected="1">Year</option>
+							<select name="hire_year" class="doh" id="year" title="Year" required>
+								<option value="" disabled selected hidden>Year</option>
 								<option value="2016">2016</option>
 								<option value="2015">2015</option>
 								<option value="2014">2014</option>
@@ -117,12 +126,12 @@
 						<input class="add_btn" type="submit" value="Create Staff Member">
 					</form>
 				</div>
-				<div class="list" id="staff_list">
+				<div class="list">
 					<h3>Staff Members</h3>
 					<hr/>
 					<div>
 						<div class="staff_box">
-							<div class="checkbox"></div>
+							<div class="checkbox_div"></div>
 							<div class="fname staff_clmn">
 								<p>First Name</p>
 							</div>
@@ -136,27 +145,8 @@
 								<p>Date of Hire</p>
 							</div>
 						</div>
-						<form>
-							<ul>
-								<li>
-									<div class="staff_box">
-										<div class="checkbox">
-											<input type="checkbox" name="office" value="Development">
-										</div>
-										<div class="fname staff_clmn">
-											<p>Alex</p>
-										</div>
-										<div class="lname staff_clmn">
-											<p>Weldetsadik</p>
-										</div>
-										<div class="staff_office staff_clmn">
-											<p>Development</p>
-										</div>
-										<div class="hire_date staff_clmn">
-											<p>11/15/2016</p>
-										</div>
-									</div>
-								</li>
+						<form id="staff_rmv_form">
+							<ul id="staff_list">
 							</ul>
 							<input class="rmv_btn" type="submit" value="Remove">
 						</form>
@@ -164,7 +154,7 @@
 					<div class="hidden" id="staff_template">
 						<li>
 							<div class="staff_box">
-								<div class="checkbox">
+								<div class="checkbox_div">
 									<input type="checkbox" name="office" value="">
 								</div>
 								<div class="fname staff_clmn">
@@ -184,10 +174,20 @@
 					</div>
 				</div>
 			</div>
+			<div id="modal_box" class="hidden">
+				<div id="modal_content">
+					<p>Are you sure you want to remove the following<span id="remove_items"></span>?</p>
+					<ul id="remove_list">
+					</ul>
+					<div id="modal_buttons">
+						<button id="confirm_btn" class="modal_btn">Yes</button>
+						<button id="cancel_btn" class="modal_btn">No</button>
+					</div>
+				</div>
+			</div>
 		</section>
 	</main>
 	<footer>
-		
 	</footer>
 	<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
